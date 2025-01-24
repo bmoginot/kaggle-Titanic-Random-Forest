@@ -1,0 +1,1 @@
+# Record of my solution for the Titanic Kaggle Challenge
