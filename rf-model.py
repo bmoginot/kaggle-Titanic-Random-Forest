@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
-from sklearn.ensemble import RandomForestRegressor
+from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import mean_absolute_error
 
 pass_data = pd.read_csv("train.csv")
@@ -41,7 +41,7 @@ max_depth = 18
 min_samples_split = 4
 min_samples_leaf = 2
 
-rf_model = RandomForestRegressor(n_estimators=n_estimators, 
+rf_model = RandomForestClassifier(n_estimators=n_estimators, 
                                  max_depth=max_depth, 
                                  min_samples_leaf=min_samples_leaf, 
                                  min_samples_split=min_samples_split, 
@@ -56,6 +56,6 @@ from csv import writer
 
 with open("log.csv", "a", newline="") as log:
     log_writer = writer(log)
-    log_writer.writerow([n_estimators, max_depth, min_samples_split, min_samples_leaf, rf_mae])
+    log_writer.writerow([n_estimators, max_depth, min_samples_split, min_samples_leaf, rf_mae]) # keep track of how parameters influence error
 
 print(rf_mae)
