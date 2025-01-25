@@ -9,7 +9,7 @@ pass_data.head()
 
 seed = 23
 
-init_features = ["Survived", "Pclass", "Sex", "Age", "SibSp", "Parch", "Embarked"] # choose relevant features
+init_features = ["Survived", "Pclass", "Sex", "SibSp", "Parch", "Embarked"] # choose relevant features
 pass_data = pass_data[init_features]
 
 pass_data = pd.get_dummies(pass_data) # one hot encode categorical values
@@ -19,7 +19,6 @@ pass_data = pass_data.dropna() # remove rows with NaN values
 pass_data.head()
 
 features = ["Pclass", 
-            "Age", 
             "SibSp", 
             "Parch", 
             "Sex_female", 

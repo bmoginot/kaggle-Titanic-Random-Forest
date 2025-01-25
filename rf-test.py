@@ -10,16 +10,14 @@ seed = 23
 
 def clean_train_data(file):
     data = pd.read_csv(file)
-    init_features = ["Survived", "Pclass", "Sex", "Age", "SibSp", "Parch", "Embarked"] # choose relevant features
+    init_features = ["Survived", "Pclass", "Sex", "SibSp", "Parch", "Embarked"] # choose relevant features
     data = data[init_features]
     data = pd.get_dummies(data) # one hot encode categorical values
-    data = data.dropna() # remove rows with NaN values
     return data
 
 def get_vals(data):
     """get X and y to use in training and testing model"""
     features = ["Pclass", 
-                "Age", 
                 "SibSp", 
                 "Parch", 
                 "Sex_female", 
@@ -44,10 +42,9 @@ def fit_model():
 
 def clean_test_data(file):
     data = pd.read_csv(file)
-    init_features = ["PassengerId", "Pclass", "Sex", "Age", "SibSp", "Parch", "Embarked"] # choose relevant features
+    init_features = ["PassengerId", "Pclass", "Sex", "SibSp", "Parch", "Embarked"] # choose relevant features
     data = data[init_features]
     data = pd.get_dummies(data) # one hot encode categorical values
-    data = data.dropna() # remove rows with NaN values
     return data
 
 cleaned_data = clean_train_data("train.csv")
@@ -57,5 +54,5 @@ test_data = clean_test_data("test.csv")
 test_X = test_data.drop("PassengerId", axis=1)
 preds = model.predict(test_X) # get predictions based on test data
 
-output = pd.DataFrame({'Id': test_data.PassengerId, 'Survived': preds})
+output = pd.DataFrame({'PassengerId': test_data.PassengerId, 'Survived': preds})
 output.to_csv('submission.csv', index=False) # write solution out to csv for submission
